@@ -85,6 +85,10 @@ def generate_launch_description():
             default_value='False',
             description='True to run simulation headless (no GUI). '),
         DeclareLaunchArgument(
+	    'real_time_factor',
+	    default_value='1.0',
+	    description='Real-time factor of the simulation'),
+        DeclareLaunchArgument(
             'urdf',
             default_value='',
             description='URDF file of the wam-v model. '),

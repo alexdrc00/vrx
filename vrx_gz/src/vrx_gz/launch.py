@@ -161,13 +161,23 @@ def competition_bridges(world_name):
         ]
     bridges.extend(task_bridges)
 
+    # TODO: Incorporar esto de forma mas elegante que detecte el world_name y habilite
+    arguments = [bridge.argument() for bridge in bridges]
+    remaps = [bridge.remapping() for bridge in bridges]
+
+    arguments.append('/world/sydney_regatta/control@ros_gz_interfaces/srv/ControlWorld')
+    remaps.append(('/world/sydney_regatta/control', '/world/sydney_regatta/control'))
+
+    arguments.append('/world/sydney_regatta/set_pose@ros_gz_interfaces/srv/SetEntityPose')
+    remaps.append(('/world/sydney_regatta/set_pose', '/world/sydney_regatta/set_pose'))
+    
     nodes = []
     nodes.append(Node(
         package='ros_gz_bridge',
         executable='parameter_bridge',
         output='screen',
-        arguments=[bridge.argument() for bridge in bridges],
-        remappings=[bridge.remapping() for bridge in bridges],
+        arguments=arguments,
+        remappings=remaps,
     ))
     return nodes
 

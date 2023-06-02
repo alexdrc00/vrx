@@ -213,7 +213,7 @@ def usv_wind_speed():
         gz_type='ignition.msgs.Float',
         ros_type='std_msgs/msg/Float32',
         direction=BridgeDirection.GZ_TO_ROS)
-        
+
 def usv_wind_direction():
     return Bridge(
         gz_topic=f'/vrx/debug/wind/direction',
@@ -221,3 +221,4 @@ def usv_wind_direction():
         gz_type='ignition.msgs.Float',
         ros_type='std_msgs/msg/Float32',
         direction=BridgeDirection.GZ_TO_ROS)
+
