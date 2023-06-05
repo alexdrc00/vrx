@@ -298,6 +298,11 @@ void USVWind::PreUpdate(
   }
 
   auto dT = time - this->dataPtr->previousTime;
+  
+  // if (dT.count() == 0) {
+  if (dT.count() < 5e-6) {
+    return; // return early if no time has passed
+  }
 
   std::normal_distribution<double> dist(0, 1);
   double randomDist = dist(*this->dataPtr->randGenerator);
